@@ -27,7 +27,7 @@ int container_main(void* arg)
 int main() {
     printf("Parent - start a container!\n");
     //调用clone函数，其中传出一个函数，还有一个栈空间的（为什么传尾指针？因为栈是反的
-    int container_pid = clone(container_main, container_stack + STACK_SIZE, CLONE_NEWUTS|SIGCHLD, NULL);
+    int container_pid = clone(container_main, container_stack + STACK_SIZE, CLONE_NEWUTS|SIGCHLD|CLONE_NEWIPC, NULL);
     waitpid(container_pid, NULL, 0);
     printf("Parent - container stopped!\n");
     return 0;
